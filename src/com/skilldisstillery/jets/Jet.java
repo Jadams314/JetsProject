@@ -17,7 +17,13 @@ public abstract class Jet {
 		this.type = type;
 	}
 	public void fly() {
-		System.out.println(this.model + " is now taking off");
+		int time = (int) (this.range / this.speed);
+		if (time > 1) {
+			System.out.println(this.model + " is now taking off. It will fly for " + time + " hours.");
+			}else {
+				System.out.println(this.model + " is now taking off. It will fly for " + time + " hour.");
+			}
+			
 	}
 
 	public String getType() {

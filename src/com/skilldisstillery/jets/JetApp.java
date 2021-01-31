@@ -28,7 +28,7 @@ public class JetApp {
 		System.out.println("4) View the jet with the longest range ");
 		System.out.println("5) Load all the cargo jets ");
 		System.out.println("6) Make all the fighter jets fight ");
-		System.out.println("7) Add a jet to the fleet");
+		System.out.println("7) Add a Passenger jet to the fleet");
 		System.out.println("8) Remove a jet from the fleet");
 		System.out.println("9) Quit");
 		menuSwitch();
@@ -61,6 +61,23 @@ public class JetApp {
 				airField.dogFight();
 				displayUserMenu();
 				break;
+		case 7:
+				airField.addJet();
+				displayUserMenu();
+				break;
+		case 8:
+				airField.removeJet();
+				displayUserMenu();
+				break;
+		case 9:
+				System.out.println("You have chosen to quit");
+				System.out.println("Good Bye");
+				System.exit(choose);
+				break;
+		default:
+				System.out.println("That is not a valid response");
+				break;
+			
 		}
 		
 	}

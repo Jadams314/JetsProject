@@ -5,14 +5,51 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.Scanner;
 
 public class AirField {
 	ArrayList<Jet> jetList = new ArrayList<>();
+	Scanner kb = new Scanner(System.in);
+
+	protected void removeJet() {
+		//displayAllJets();
+		System.out.println("Please enter the position of jet you would like to remove");
+		int idx = 1;
+		for (Jet jet : jetList) {
+			System.out.println(idx + ") " + jet.getModel());
+			idx++;
+		}
+		int model = kb.nextInt();
+		if (model > jetList.size()) {
+			System.out.println("Sorry there is not a jet in the " + model + " Position");
+			removeJet();
+		}else {
+			model = model - 1;
+			jetList.remove(model);
+		}
+	}
+	
+	protected void addJet() {
+		String model;
+		double speed;
+		int range;
+		long price;
+		String type = "Passenger";
+
+		System.out.println("What is the model of Passenger jet you would like to add?");
+		model = kb.next();
+		System.out.println("What is the top speed of the jet?");
+		speed = kb.nextDouble();
+		System.out.println("What is the max range of the jet?");
+		range = kb.nextInt();
+		System.out.println("What is the price for this jet");
+		price = kb.nextLong();
+
+		PassengerJet pj = new PassengerJet(model, speed, range, price, type);
+		jetList.add(pj);
+
+	}
 
 	protected void dogFight() {
 		for (int i = 0; i < jetList.size(); i++) {
@@ -23,7 +60,7 @@ public class AirField {
 			}
 		}
 	}
-	
+
 	protected void loadCargo() {
 		for (int i = 0; i < jetList.size(); i++) {
 			if (jetList.get(i) instanceof CargoCarrier) {
@@ -91,7 +128,7 @@ public class AirField {
 		BufferedReader reader = null;
 		// we want to put the names into a list which is
 		// is of type collection. "is collection" because
-		// when we call we will have the option to asaign it to
+		// when we call we will have the option to assign it to
 		// any kind of list after
 
 		try {
